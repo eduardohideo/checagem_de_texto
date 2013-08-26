@@ -29,7 +29,7 @@ def checar(nome_do_arquivo,codificacao="utf-8"):
     software (plural) | sistemas de software, programas | softwares
     ________________________________________________
     Termo em Inglês | Tradução Correta | Tradução Indesejável
-    to support | prover, dar suporte, implementar, incluir, comportar, contemplar, oferecer, disponibilizar | suportar (não é errado se usado como sinônimo de sustentar; é apenas feio :-)
+    support | prover, dar suporte, implementar, incluir, comportar, contemplar, oferecer, disponibilizar | suportar (não é errado se usado como sinônimo de sustentar; é apenas feio :-)
     ________________________________________________
     Termo em Inglês | Tradução Correta | Tradução Indesejável
     technical debt | dívida técnica | débito técnico
@@ -40,7 +40,7 @@ def checar(nome_do_arquivo,codificacao="utf-8"):
     linhas_do_arquivo = []
     resultados = []
     with codecs.open(nome_do_arquivo,"r",codificacao) as arquivo:
-	linhas_do_arquivo = unicode(arquivo.read()).splitlines()
+	linhas_do_arquivo = arquivo.read().splitlines()
     for linha_numero,linha in enumerate(linhas_do_arquivo,1):
 	resultado = consulta_dicionario(linha,dicionarios)
 	if resultado != []:
@@ -109,14 +109,17 @@ def lista_dicionarios():
     return lista_dicionario
 
 
+def csv_unireader(f, encoding="utf-8"):
+    for row in csv.reader(codecs.iterencode(codecs.iterdecode(f, encoding), "utf-8"), delimiter="\t"):
+        yield [e.decode("utf-8") for e in row]
+
 def ler_dicionario(nome_do_arquivo):
     """
     >>> ler_dicionario("teste.txt")
-    [['1   2', '3'], ['4   5', '6']]
+    [[u'1', u'2', u'3'], [u'4', u'5', u'6']]
     """
     with open(nome_do_arquivo,"rU") as arquivo:
-	arquivo.seek(0)
-	reader = csv.reader(arquivo, delimiter="\t")
+	reader = csv_unireader(arquivo)
 	return [linhas for linhas in reader]
 
 def main(argv=None):
