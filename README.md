@@ -10,6 +10,6 @@ para executar os testes:
 
 como usar:
     
-    checagem_texto.py nome_do_arquivo [ codificacao ]
+    python checagem_texto.py nome_do_arquivo [ codificacao ]
 
 Por padrão a codificação usada é a UTF-8

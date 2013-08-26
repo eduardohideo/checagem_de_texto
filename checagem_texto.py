@@ -15,7 +15,7 @@ PALAVRAS_MAL_TRADUZIDAS = "./mal_traduzidos.txt"
 def checar(nome_do_arquivo,codificacao="utf-8"):
     """
     
-    checagem_texto.py nome_do_arquivo [codificacao]
+    python checagem_texto.py nome_do_arquivo [codificacao]
     
 
     >>> checar("texto_teste.txt")
