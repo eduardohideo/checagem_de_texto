@@ -3,7 +3,7 @@ checagem_de_texto
 
 faz analises em textos em português de sistemas de software 
 
-para executar os teste: 
+para executar os testes: 
 
     python -m doctest -v checagem_texto.py
 
