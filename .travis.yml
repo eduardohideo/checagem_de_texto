@@ -1,0 +1,19 @@
+language: python
+python:
+  - "2.6"
+script: python -m doctest -v checagem_texto.py
+
+before_deploy:
+- openssl aes-256-cbc -K $encrypted_b8806b237d70_key -iv $encrypted_b8806b237d70_iv
+  -in amazon.enc -out ~\/.ssh/amazon -d
+- eval "$(ssh-agent -s)"
+- chmod 600 /.ssh/amazon
+- ssh-add /.ssh/amazon
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR $SSH_USER@$SSH_HOST:/tmp
+env:
+  global:
+  - secure: TDKrKGgnLwsbS4OLR/sjXWcv9H5uMh29q0pYsHSfQf/I5JgwKE096iOrKImW2Lk/wsbisXxFBcXLBC5K8PEXndhucGC4vtyP1r+abH0vPN8ybAsNQq7ybsd4d5j+xrJWPI9gf6n7Xdo9u6il40lHxLxFgDqmp8idcKg3rGMbL+uzr3bF6jygIu+GlPsu/FdNTB+3k1lalEGSSdv13zX9xC8sz/wcPKDvTCTPTFb5eRbO7ye8BvkzHSA4HmUhlzsOolCtKmasWdMHneCO7tyBbBLosxqkvOeUhzoAOb/Q7295c4zzFX5yxL+iZYTpm5e7HBPzD4fsJmN50Y1OecchDM7RHSWbtWCQ/ZXkXoAnazgw2fuU3jxVJvATo35AxKkUT1E/jgh4fbyLWUvA2+XHk8oMVb4JCdZOCyMEJKXKdUPoq9VskJB9eGamJKw8jj8p0DGgE1R3EhgxXeP2Pdqbyb0sBYc8zt4Dy94MhuM51mslQxR72zTxi4azc7qZhlk61Q6gRclXx5Pc1Sis3hBQF2Sy/zdsqYW5yY8GAbSFHH/Isr60oykFHlguOJs/WsOxVrCuLzu/VTL3glH3GXxtl0eCL63JeEaQuEydcjsP68UFQkOwhCGnYR8RTa+sadt68F+tUAybpV/xuNISjlpg9M4OBkAI4gnwQB97bJ/1fts=
+  - secure: Ewf4nzPVbH+n7mYlzHf1qQQxGKR0BT6W81Sd+F7fXpARQR21ZRCsl9nAX550mVO8J0dA0gst6OLMNPJo9pFtk3ztt487jKvC0LTUrkYRZ0vKhIdXT1taxb3uTQ8FrQiy8e0NcK5QLPk8kbG2BRJ+VUD5dnoOHvaXq8RpYpcL7dfdeatQ1CZ7xkz7NpT0ezecBIBhzbeUDla5zkBhAWJIcGX9DuiKDDHHvFUMvialnLY7xss0+WP3XohE4PwIAxWZMMQhE2u+4TdrJi2CooLs8bhhophjfMHYi+70+9UE+KWu4nedKI0BCbmnECtxAQLWHlWDDWn6VG6pO1Gq64gm6TFw8CpgWGkwZO9TJoMlwuHm73OP8FL66Dqgw0JtkZqQuWhlVgBaA7tMav7sT7LFGidDhxUgkl3InsLEp5hmKUyOzDaMeOvebJhd2hil8bPo8roTCd2WaOk7FnYoNdV/8x/YLyj4/7l3TJ8m3ro7hD+0MZgfvN9A4dZ5iN+anddGbIXNykpyWtjZJA/ImnWXcAmkXDfvejuSIKqrvtNPRwmBr/X+SoXFsM8fmn7yJcTeiBKzorwp2vaCJ7+wZyH/qs+5u+FkghxuVeBu5taZ72b/VsTxShZtNrWkrPtfpAYeRsUVSI3cO91/WDgrqf2HV6kBPpqFtTNofYrAo0FWWs8=
