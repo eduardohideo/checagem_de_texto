@@ -5,10 +5,10 @@ script: python -m doctest -v checagem_texto.py
 
 before_deploy:
 - openssl aes-256-cbc -K $encrypted_b8806b237d70_key -iv $encrypted_b8806b237d70_iv
-  -in amazon.enc -out ~\/.ssh/amazon -d
+  -in amazon.enc -out ~\/tmp/amazon -d
 - eval "$(ssh-agent -s)"
-- chmod 600 /.ssh/amazon
-- ssh-add /.ssh/amazon
+- chmod 600 /tmp/amazon
+- ssh-add /tmp/amazon
 deploy:
   provider: script
   skip_cleanup: true
