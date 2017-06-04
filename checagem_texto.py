@@ -16,22 +16,7 @@ PALAVRAS_MAL_TRADUZIDAS = "./mal_traduzidos.txt"
 
 def checar_texto(nome_do_arquivo,codificacao="utf-8"):
     """
-    
     python checagem_texto.py nome_do_arquivo [codificacao]
-
-    >>> checar_texto("texto_teste.txt")
-    linha 1
-    fazendo o teste software com e suportar technical debt hack
-    _______________________________________________________
-    termo em inglês | tradução
-    hack | gambiarra
-    __________________________________________
-    Termo em Inglês | Tradução Correta | Tradução Indesejável
-    software (plural) | sistemas de software, programas | softwares
-    support | prover, dar suporte, implementar, incluir, comportar, contemplar, oferecer, disponibilizar | suportar (não é errado se usado como sinônimo de sustentar; é apenas feio :-)
-    technical debt | dívida técnica | débito técnico
-    __________________________________________
-
     """
     dicionarios = lista_dicionarios()
     linhas_do_arquivo = []
