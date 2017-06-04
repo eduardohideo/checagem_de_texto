@@ -12,7 +12,7 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR $SSH_USER@$SSH_HOST:/tmp
+  script: rsync -e "ssh -o StrictHostKeyChecking=no" -r --delete-after --quiet $TRAVIS_BUILD_DIR $SSH_USER@$SSH_HOST:/tmp
 env:
   global:
   - secure: TDKrKGgnLwsbS4OLR/sjXWcv9H5uMh29q0pYsHSfQf/I5JgwKE096iOrKImW2Lk/wsbisXxFBcXLBC5K8PEXndhucGC4vtyP1r+abH0vPN8ybAsNQq7ybsd4d5j+xrJWPI9gf6n7Xdo9u6il40lHxLxFgDqmp8idcKg3rGMbL+uzr3bF6jygIu+GlPsu/FdNTB+3k1lalEGSSdv13zX9xC8sz/wcPKDvTCTPTFb5eRbO7ye8BvkzHSA4HmUhlzsOolCtKmasWdMHneCO7tyBbBLosxqkvOeUhzoAOb/Q7295c4zzFX5yxL+iZYTpm5e7HBPzD4fsJmN50Y1OecchDM7RHSWbtWCQ/ZXkXoAnazgw2fuU3jxVJvATo35AxKkUT1E/jgh4fbyLWUvA2+XHk8oMVb4JCdZOCyMEJKXKdUPoq9VskJB9eGamJKw8jj8p0DGgE1R3EhgxXeP2Pdqbyb0sBYc8zt4Dy94MhuM51mslQxR72zTxi4azc7qZhlk61Q6gRclXx5Pc1Sis3hBQF2Sy/zdsqYW5yY8GAbSFHH/Isr60oykFHlguOJs/WsOxVrCuLzu/VTL3glH3GXxtl0eCL63JeEaQuEydcjsP68UFQkOwhCGnYR8RTa+sadt68F+tUAybpV/xuNISjlpg9M4OBkAI4gnwQB97bJ/1fts=
